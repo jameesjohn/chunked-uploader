@@ -147,6 +147,8 @@ func CompleteUpload(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 	for i := 1; i <= stats.NumChunks; i++ {
 		fileBytes, err := os.ReadFile(filepath.Join(rootDir, fmt.Sprintf("%v", i)))
 
+		cType := http.DetectContentType(fileBytes)
+		log.Println(cType)
 		if err != nil {
 			if errors.Is(err, fs.ErrNotExist) {
 				//	Chunk does not exist. Either the chunk wasn't uploaded or wasn't saved correctly. We ignore.

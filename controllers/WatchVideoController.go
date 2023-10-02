@@ -44,7 +44,7 @@ func WatchVideo(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	//w.Header().Set("Content-Length", fmt.Sprintf("%v", stats.Size()))
+	w.Header().Set("Content-Type", "video/mp4")
 
 	for {
 		log.Println("looping")

@@ -23,7 +23,7 @@ type UploadStatistic struct {
 func (sM *StatsModel) FindStatsForVideo(videoID string) (*UploadStatistic, error) {
 	var stats UploadStatistic
 
-	result := sM.Db.FirstOrCreate(&UploadStatistic{VideoID: videoID}).First(&stats)
+	result := sM.Db.FirstOrCreate(&stats, &UploadStatistic{VideoID: videoID})
 
 	if result.Error != nil {
 		return nil, result.Error
